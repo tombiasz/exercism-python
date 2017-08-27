@@ -22,21 +22,24 @@ def encode(string):
     if len(string) == 0:
         return ''
 
-    char_count = 1
-    last_char = string[0]
-    output = []
-    for c in string[1:]:
-        if c != last_char:
-            if char_count != 1:
-                output.append(str(char_count))
-            output.append(last_char)
-            last_char = c
-            char_count = 1
-        else:
-            char_count += 1
+    chars_seen = []
+    chars_count = []
+    idx = 0
+    chars_seen.insert(idx, string[0])
+    chars_count.insert(idx, 1)
 
-    if char_count != 1:
-        output.append(str(char_count))
-    output.append(last_char)
+    for char in string[1:]:
+        if chars_seen[idx] == char:
+            chars_count[idx] += 1
+        else:
+            idx += 1
+            chars_seen.insert(idx, char)
+            chars_count.insert(idx, 1)
+
+    output = []
+    for count, char in zip(chars_count, chars_seen):
+        if count != 1:
+            output.append(str(count))
+        output.append(char)
 
     return ''.join(output)
