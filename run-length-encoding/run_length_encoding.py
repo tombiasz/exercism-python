@@ -2,19 +2,17 @@ def decode(string):
     if len(string) == 0:
         return ''
 
-    mult = ''
+    mult = 0
     output = ''
-
-    for c in string:
-        if c.isdigit():
-            mult += c
+    for char in string:
+        if char.isdigit():
+            mult = mult * 10 + int(char)
         else:
-            if mult != '':
-                mult = int(mult)
-                output += mult * c
-                mult = ''
+            if mult != 0:
+                output += mult * char
+                mult = 0
             else:
-                output += c
+                output += char
     return output
 
 
@@ -27,7 +25,6 @@ def encode(string):
     idx = 0
     chars_seen.insert(idx, string[0])
     chars_count.insert(idx, 1)
-
     for char in string[1:]:
         if chars_seen[idx] == char:
             chars_count[idx] += 1
