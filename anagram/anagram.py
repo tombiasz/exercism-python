@@ -10,4 +10,4 @@ def anagram_filter(string):
 
 
 def detect_anagrams(string, array):
-    return filter(anagram_filter(string), array)
+    return list(filter(anagram_filter(string), array))
