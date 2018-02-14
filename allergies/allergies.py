@@ -25,6 +25,6 @@ class Allergies(object):
     def lst(self):
         return [
             key
-            for key, value in self.ALLERGENTS.iteritems()
+            for key, value in self.ALLERGENTS.items()
             if self._is_allergic_to(value)
         ]
