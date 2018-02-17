@@ -2,24 +2,26 @@ import string
 
 
 def partition(string, size=5):
-    return [string[i:i+size] for i in xrange(0, len(string), size)]
+    return [string[i:i+size] for i in range(0, len(string), size)]
 
 
 def encode(plaintext):
     plaintext = plaintext.lower()
-    translation = string.maketrans(
+    chars_to_delete = ''.join([string.punctuation, string.whitespace])
+    translation = str.maketrans(
         string.ascii_lowercase,
-        string.ascii_lowercase[::-1]
+        string.ascii_lowercase[::-1],
+        chars_to_delete
     )
-    deletechars = ''.join([string.punctuation, string.whitespace])
-    ciphertext = plaintext.translate(translation, deletechars)
+    ciphertext = plaintext.translate(translation)
     return ' '.join(partition(ciphertext))
 
 
 def decode(ciphertext):
-    translation = string.maketrans(
+    chars_to_delete = string.whitespace
+    translation = str.maketrans(
         string.ascii_lowercase[::-1],
-        string.ascii_lowercase
+        string.ascii_lowercase,
+        chars_to_delete
     )
-    deletechars = string.whitespace
-    return ciphertext.translate(translation, deletechars)
+    return ciphertext.translate(translation)
