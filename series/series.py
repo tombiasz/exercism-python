@@ -3,6 +3,6 @@ def slices(string, size):
         raise ValueError()
 
     return [
-        map(int, list(string[index:size + index]))
-        for index in xrange(len(string) - size + 1)
+        list(map(int, string[index:size + index]))
+        for index in range(len(string) - size + 1)
     ]
