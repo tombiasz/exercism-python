@@ -3,4 +3,4 @@ def is_divisible(value, dividers):
 
 
 def sum_of_multiples(n, dividers):
-    return sum([v for v in xrange(n) if is_divisible(v, dividers)])
+    return sum([v for v in range(n) if is_divisible(v, dividers)])
