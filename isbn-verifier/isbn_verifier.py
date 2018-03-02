@@ -21,10 +21,10 @@ def validate_format(isbn):
     return bool(re.match('^\d{9}[\dX]$', isbn))
 
 def calculate_checksum(isbn):
-    checksum = 0
-    for index, char in zip(range(10,0,-1), isbn):
-        checksum += index * ISBN_CHARS_TO_INTETGER[char]
-    return checksum
+    return sum([
+        index * ISBN_CHARS_TO_INTETGER[char]
+        for index, char in zip(range(10,0,-1), isbn)
+    ])
 
 def verify_checksum(checksum):
     return checksum % 11 == 0
